@@ -5,7 +5,10 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 
 const app = express();
+
 app.use(cors());
+app.options('*', cors());
+
 const PORT = 5000;
 
 // mongoose connection
