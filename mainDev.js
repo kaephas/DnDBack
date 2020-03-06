@@ -2,8 +2,10 @@ import express from 'express';
 import routes from './src/routes/routes';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 const app = express();
+app.use(cors());
 const PORT = 5000;
 
 // mongoose connection
