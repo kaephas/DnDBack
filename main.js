@@ -23,4 +23,4 @@ app.get('/', (req, res) => {
     res.send(`Node and express running on ${Process.env.PORT || PORT}`);
 });
 
-app.listen(Process.env.PORT || PORT, () => console.log(`Listening on port ${Process.env.PORT || PORT}...`));
+app.listen(process.env.PORT || PORT, () => console.log(`Listening on port ${process.env.PORT || PORT}...`));
