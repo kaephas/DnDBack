@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import { characterSchema } from "../models/models";
 
-const Character = mongoose.model('Character', characterSchema);
+const Character = mongoose.model('Character', characterSchema, 'TestChar');
 
 export const newCharacter = (req, res) => {
     let newChar = new Character(req.body);
