@@ -8,18 +8,19 @@ import router from "./src/routes/routes";
 const app = express();
 
 app.use(cors());
-app.use('/api', router);
 
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-//     res.header("Access-Control-Allow-Headers", 'Content-Type, Authorization, Content-Length, X-Requested-With, Accept');
-//     if('OPTIONS' === req.method) {
-//         res.send(200);
-//     } else {
-//         next();
-//     }
-// });
+
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    // res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+    // res.header("Access-Control-Allow-Headers", 'Content-Type, Authorization, Content-Length, X-Requested-With, Accept');
+    // if('OPTIONS' === req.method) {
+    //     res.send(200);
+    // } else {
+        next();
+    // }
+});
+app.use('/api', router);
 
 const PORT = 5000;
 
@@ -43,6 +44,18 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send(`Node and express running on ${process.env.PORT || PORT}`);
+});
+
+app.get('/api/characters', (req, res) => {
+    request(
+        { url: 'https://dnd-chars.herokuapp.com/api/characters' },
+        (err, res, body) => {
+            if (err || res.statusCode !== 200) {
+                return res.status(500).json({type: 'error', message: err.message});
+            }
+            res.json(JSON.parse(body));
+        }
+    )
 });
 
 // api routes
