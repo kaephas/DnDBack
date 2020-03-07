@@ -3,21 +3,23 @@ import routes from './src/routes/routes';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import router from "./src/routes/routes";
 
 const app = express();
 
-// app.use(cors());
+app.use(cors());
+app.use('/api', router);
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-    res.header("Access-Control-Allow-Headers", 'Content-Type, Authorization, Content-Length, X-Requested-With, Accept');
-    if('OPTIONS' === req.method) {
-        res.send(200);
-    } else {
-        next();
-    }
-});
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+//     res.header("Access-Control-Allow-Headers", 'Content-Type, Authorization, Content-Length, X-Requested-With, Accept');
+//     if('OPTIONS' === req.method) {
+//         res.send(200);
+//     } else {
+//         next();
+//     }
+// });
 
 const PORT = 5000;
 
@@ -36,15 +38,15 @@ db.once('open', function() {
 });
 
 // body parser
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(bodyParser.json());
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
 app.get('/', (req, res) => {
     res.send(`Node and express running on ${process.env.PORT || PORT}`);
 });
 
 // api routes
-routes(app);
+// routes(app);
 
 // start app
 app.listen(process.env.PORT || PORT, () => console.log(`Listening on port ${process.env.PORT || PORT}...`));

@@ -1,5 +1,12 @@
 import { newCharacter, getCharacters, getCharacter, updateCharacter, deleteCharacter } from "../controllers/controller";
 import cors from 'cors';
+import express from 'express';
+
+const router = new express.Router();
+
+router.get('/character', function(req, res, next) {
+    getCharacters(req, res);
+});
 
 const routes = (app) => {
     app.use(cors());
@@ -39,4 +46,4 @@ const routes = (app) => {
         }, deleteCharacter);
 };
 
-export default routes;
+export default router;
