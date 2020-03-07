@@ -46,17 +46,17 @@ app.get('/', (req, res) => {
     res.send(`Node and express running on ${process.env.PORT || PORT}`);
 });
 
-app.get('/api/characters', (req, res) => {
-    request(
-        { url: 'https://dnd-chars.herokuapp.com/api/characters' },
-        (err, res, body) => {
-            if (err || res.statusCode !== 200) {
-                return res.status(500).json({type: 'error', message: err.message});
-            }
-            res.json(JSON.parse(body));
-        }
-    )
-});
+// app.get('/api/characters', (req, res) => {
+//     request(
+//         { url: 'https://dnd-chars.herokuapp.com/api/characters' },
+//         (err, res, body) => {
+//             if (err || res.statusCode !== 200) {
+//                 return res.status(500).json({type: 'error', message: err.message});
+//             }
+//             res.json(JSON.parse(body));
+//         }
+//     )
+// });
 
 // api routes
 // routes(app);
