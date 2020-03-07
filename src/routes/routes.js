@@ -1,6 +1,8 @@
 import { newCharacter, getCharacters, getCharacter, updateCharacter, deleteCharacter } from "../controllers/controller";
+import cors from 'cors';
 
 const routes = (app) => {
+    app.use(cors());
     app.route('/character')
         // get all characters
         .get((req, res, next) => {
