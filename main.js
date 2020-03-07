@@ -2,6 +2,7 @@ import express from 'express';
 import routes from './src/routes/routes';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 const app = express();
 const PORT = 5000;
@@ -19,6 +20,8 @@ db.on('error', console.error.bind(console, "connection issues..."));
 db.once('open', function() {
     console.log('connected to db');
 });
+
+app.use(cors());
 
 // body parser
 app.use(bodyParser.urlencoded({extended:true}));
