@@ -46,4 +46,4 @@ const routes = (app) => {
         }, deleteCharacter);
 };
 
-export default router;
+export default routes;
