@@ -33,15 +33,22 @@ const routes = (app) => {
            next();
         }, getCharacter)
         // update a character
+
+        // delete a character
+        // .delete((req, res, next) => {
+        //     console.log(`Delete request from: ${req.originalUrl}`);
+        //     console.log(`Delete request type: ${req.method}`);
+        //     next();
+        // }, deleteCharacter);
+
+    app.route('/character/:id')
         .put((req, res, next) => {
             console.log(`Put request from: ${req.originalUrl}`);
             console.log(`Put request type: ${req.method}`);
             next();
         }, updateCharacter)
-        // delete a character
         .delete((req, res, next) => {
-            console.log(`Delete request from: ${req.originalUrl}`);
-            console.log(`Delete request type: ${req.method}`);
+            console.log(`${req.method} request from: ${req.originalUrl}`);
             next();
         }, deleteCharacter);
 };

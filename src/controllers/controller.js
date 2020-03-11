@@ -32,7 +32,7 @@ export const getCharacter = (req, res) => {
 };
 
 export const updateCharacter = (req, res) => {
-    Character.findOneAndUpdate({name: req.params.name},
+    Character.findOneAndUpdate({_id: req.params.name},
         req.body, { new: true, useFindAndModify: false},
         (err, character) => {
         if(err) {
@@ -43,7 +43,7 @@ export const updateCharacter = (req, res) => {
 };
 
 export const deleteCharacter = (req, res) => {
-    Character.findOneAndDelete({name: req.params.name},(err) => {
+    Character.findOneAndDelete({_id: req.params.id},(err) => {
         if(err) {
             res.send(err);
         }
